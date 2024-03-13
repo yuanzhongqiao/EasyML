@@ -1,98 +1,93 @@
-# Easy Machine Learning
-
-## What is Easy Machine Learning
-Machine learning algorithms have become the key components in many big data applications. However, the full potential of machine learning is still far from been realized because using machine learning algorithms is hard,
-especially on distributed platforms such as Hadoop and Spark. The key barriers come from not only the implementation of the algorithms themselves, but also the processing for applying them to real applications which often involve multiple steps 
-and different algorithms. 
-
-Our platform **Easy Machine Learning** presents a general-purpose dataflow-based system for easing the process of applying machine learning algorithms to real world tasks. In the system a learning task is formulated as a directed acyclic graph (DAG) in which each node represents an operation 
-(e.g. a machine learning algorithm), and each edge represents the flow of the data from one node to its descendants. The task can be defined manually or be cloned from existing tasks/templates. After submitting a task to the cloud, each node will be automatically scheduled to execute according to the DAG. 
-Graphical user interface is implemented for making users to create, configure, submit, and monitor a task in a drag-and-drop manner. Advantages of the system include 
- 
-1. Lowing the barriers of defining and executing machine learning tasks;
- 
-2. Sharing and re-using the implementations of the algorithms, the job DAGs, and the experimental results;
-
-3. Seamlessly integrating the stand-alone algorithms as well as the distributed algorithms in one task.
-
-
-
-
-The system consists of three major components: 
-
-* A distributed machine learning library which implements not only popular used machine learning algorithms, but also the algorithms for data pre/post-processing, data format transformation, feature generation, performance evaluation etc. These algorithms are mainly implemented based on Spark.  
-* A GUI-based machine learning studio system which enable users to create, configure, submit, monitor, and sharing their machine learning process in a drag-and-drop manner. All of the algorithms in the machine learning library can be accessed and configured in the studio system. They are the key building blocks for constructing machine learning tasks. 
-<div align=center>
-<img src="./img/LR_DAG.png" width="400" height="300" alt="An example dataflow DAG"/>
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">简单的机器学习</font></font></h1><a id="user-content-easy-machine-learning" class="anchor" aria-label="永久链接：简单的机器学习" href="#easy-machine-learning"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">什么是简易机器学习</font></font></h2><a id="user-content-what-is-easy-machine-learning" class="anchor" aria-label="永久链接：什么是简单的机器学习" href="#what-is-easy-machine-learning"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">机器学习算法已成为许多大数据应用中的关键组成部分。</font><font style="vertical-align: inherit;">然而，机器学习的全部潜力还远没有被充分发挥，因为使用机器学习算法很困难，特别是在 Hadoop 和 Spark 等分布式平台上。</font><font style="vertical-align: inherit;">关键障碍不仅来自算法本身的实现，还来自将它们应用到实际应用中的处理过程，这通常涉及多个步骤和不同的算法。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们的Easy Machine Learning</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">平台</font><font style="vertical-align: inherit;">提供了一个基于通用数据流的系统，可简化将机器学习算法应用于现实世界任务的过程。</font><font style="vertical-align: inherit;">在该系统中，学习任务被表述为有向无环图（DAG），其中每个节点代表一个操作（例如机器学习算法），每条边代表从一个节点到其后代的数据流。</font><font style="vertical-align: inherit;">该任务可以手动定义或从现有任务/模板克隆。</font><font style="vertical-align: inherit;">向云端提交任务后，各个节点会根据DAG自动调度执行。</font><font style="vertical-align: inherit;">实现图形用户界面，使用户能够以拖放的方式创建、配置、提交和监控任务。</font><font style="vertical-align: inherit;">该系统的优点包括</font></font></p>
+<ol dir="auto">
+<li>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">降低定义和执行机器学习任务的障碍；</font></font></p>
+</li>
+<li>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">共享和重用算法的实现、作业 DAG 和实验结果；</font></font></p>
+</li>
+<li>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将独立算法和分布式算法无缝集成到一项任务中。</font></font></p>
+</li>
+</ol>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该系统由三个主要部分组成：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一个分布式机器学习库，不仅实现了常用的机器学习算法，还实现了数据前/后处理、数据格式转换、特征生成、性能评估等算法。这些算法主要基于Spark实现。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基于 GUI 的机器学习工作室系统，使用户能够以拖放方式创建、配置、提交、监控和共享他们的机器学习过程。</font><font style="vertical-align: inherit;">机器学习库中的所有算法都可以在工作室系统中访问和配置。</font><font style="vertical-align: inherit;">它们是构建机器学习任务的关键构建块。</font></font></li>
+</ul>
+<div align="center" dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="/ICT-BDA/EasyML/blob/master/img/LR_DAG.png"><img src="/ICT-BDA/EasyML/raw/master/img/LR_DAG.png" width="400" height="300" alt="数据流 DAG 示例" style="max-width: 100%;"></a>
 </div>
-
-* A cloud service for executing the tasks. We build the service based on the open source big data platform of Hadoop and Spark. In order to build an platform, we organised a cluster of server on ***Docker***. After receiving a task DAG from the GUI, each node will be automatically scheduled to run when all of its dependent data sources are ready. The algorithm corresponds to the node will scheduled to run on Linux, Spark, or Map-Reduce, according to their implementation.
-<div align=center>
-<img src="./img/Docker_structure.png" width="90%  alt="Docker studio"/>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用于执行任务的云服务。</font><font style="vertical-align: inherit;">我们基于Hadoop和Spark开源大数据平台构建服务。</font><font style="vertical-align: inherit;">为了搭建一个平台，我们在</font></font><em><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Docker</font></font></strong></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上组织了一个服务器集群。</font><font style="vertical-align: inherit;">从 GUI 接收到任务 DAG 后，每个节点将自动安排在其所有依赖数据源准备就绪时运行。</font><font style="vertical-align: inherit;">根据其实现，该算法对应于将计划在 Linux、Spark 或 Map-Reduce 上运行的节点。</font></font></li>
+</ul>
+<div align="center" dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="/ICT-BDA/EasyML/blob/master/img/Docker_structure.png"><img src="/ICT-BDA/EasyML/raw/master/img/Docker_structure.png" width="90%  alt=" style="max-width: 100%;"></a>
 </div>
-
-
-## How to involve in our project
-
-Pull all project and prepare some necessary environments and a kind of development utilities. Follows the step in **[Quick-start.md](https://github.com/ICT-BDA/EasyML/blob/master/QuickStart.md)**, and you can create our system in your computer.
-
-
-## How to use Easy Machine Learning Studio 
-After you have ran Easy ML，You can login via `http://localhost:18080/EMLStudio.html`with our official account `bdaict@hotmail.com` and password `bdaict`. For the best user experience, it is recommended to use Chrome.
-<div align=center>
-<img src="./img/home_page.png" width="90%  alt="Homepage"/>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如何参与我们的项目</font></font></h2><a id="user-content-how-to-involve-in-our-project" class="anchor" aria-label="永久链接：如何参与我们的项目" href="#how-to-involve-in-our-project"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">拉取所有项目并准备一些必要的环境和一种开发实用程序。</font></font><strong><a href="https://github.com/ICT-BDA/EasyML/blob/master/QuickStart.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">按照Quick-start.md</font></font></a></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中的步骤</font><font style="vertical-align: inherit;">，您就可以在您的计算机中创建我们的系统。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如何使用 Easy Machine Learning Studio</font></font></h2><a id="user-content-how-to-use-easy-machine-learning-studio" class="anchor" aria-label="永久链接：如何使用 Easy Machine Learning Studio" href="#how-to-use-easy-machine-learning-studio"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运行Easy ML后，您可以使用</font></font><code>http://localhost:18080/EMLStudio.html</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们的官方账号</font></font><code>bdaict@hotmail.com</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和密码登录</font></font><code>bdaict</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">为了获得最佳的用户体验，建议使用Chrome。</font></font></p>
+<div align="center" dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="/ICT-BDA/EasyML/blob/master/img/home_page.png"><img src="/ICT-BDA/EasyML/raw/master/img/home_page.png" width="90%  alt=" style="max-width: 100%;"></a>
 </div>
-
-* As shown in the following figure, the users can create a machine learning task (a dataflow DAG) with the algorithms and data sets listed in the left panel of the page. They can choose to click the algorithms and data sets listed in the **`Program`** and **`Data`** panels. They can also click the **`Job`** panel, select an existing task, clone it, and make necessary modifications. The users can configure the task information and parameter values of each node in the right panel. The nodes in the task could corresponds to either a stand-alone Linux program or a distributed program running on Spark or Hadoop Map-Reduce.
-<div align=center>
-<img src="./img/job_construct.png" width="90%  alt="job_structure"/>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如下图所示，用户可以使用页面左侧面板中列出的算法和数据集创建机器学习任务（数据流 DAG）。</font></font><strong><code>Program</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">他们可以选择单击和面板</font><font style="vertical-align: inherit;">中列出的算法和数据集</font></font><strong><code>Data</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">他们还可以单击</font></font><strong><code>Job</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">面板，选择现有任务，克隆它，并进行必要的修改。</font><font style="vertical-align: inherit;">用户可以在右侧面板中配置各节点的任务信息和参数值。</font><font style="vertical-align: inherit;">任务中的节点可以对应于独立的 Linux 程序或在 Spark 或 Hadoop Map-Reduce 上运行的分布式程序。</font></font></li>
+</ul>
+<div align="center" dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="/ICT-BDA/EasyML/blob/master/img/job_construct.png"><img src="/ICT-BDA/EasyML/raw/master/img/job_construct.png" width="90%  alt=" style="max-width: 100%;"></a>
 </div>
-
-* The task is submitted to run on the cloud after clicking the **`submit`** button. The status of each node is indicated with different colors, as shown in the following figure.
-<div align=center>
-<img src="./img/job_submit.png" width="90%  alt="job_structure"/>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">点击按钮后，任务提交到云端运行</font></font><strong><code>submit</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font><font style="vertical-align: inherit;">每个节点的状态用不同的颜色表示，如下图所示。</font></font></li>
+</ul>
+<div align="center" dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="/ICT-BDA/EasyML/blob/master/img/job_submit.png"><img src="/ICT-BDA/EasyML/raw/master/img/job_submit.png" width="90%  alt=" style="max-width: 100%;"></a>
 </div>
-
-* Users could right click on the **`green output port`** of finished executing node to preview the output data. One could check the stdout and stderr logs from the right click menu of each finished executing node as well.
-The users may check the outputs of a node by right clicking the corresponding output ports. The standard output and standard error information printed during the execution can be checked through right clicking the corresponding nodes and selects the menu **`Show STDOUT`** and **`Show STDERR`**.
-<div align=center>
-<img src="./img/job_stdout.png" width="90%  alt="job_stdout"/>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户可以右键单击</font></font><strong><code>green output port</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执行完毕的节点来预览输出数据。</font><font style="vertical-align: inherit;">人们还可以从每个已完成执行节点的右键菜单中检查 stdout 和 stderr 日志。</font><font style="vertical-align: inherit;">用户可以通过右键单击相应的输出端口来查看节点的输出。</font><font style="vertical-align: inherit;">执行过程中打印的标准输出和标准错误信息可以通过右键单击相应节点并选择菜单</font></font><strong><code>Show STDOUT</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和来查看</font></font><strong><code>Show STDERR</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。</font></font></li>
+</ul>
+<div align="center" dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="/ICT-BDA/EasyML/blob/master/img/job_stdout.png"><img src="/ICT-BDA/EasyML/raw/master/img/job_stdout.png" width="90%  alt=" style="max-width: 100%;"></a>
 </div>
-
-* A finished (either success or not) task can be further modified and resubmitted to run, as shown in the following figure. Our system will only schedule the influenced nodes to run. The outputs of uninfluenced nodes are directly reused to save the running time and system resources.
-<div align=center>
-<img src="./img/job_reuse_submit.png" width="90%  alt="job_stdout"/>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">完成的任务（无论成功与否）都可以进一步修改并重新提交运行，如下图所示。</font><font style="vertical-align: inherit;">我们的系统只会安排受影响的节点运行。</font><font style="vertical-align: inherit;">不受影响节点的输出被直接复用，以节省运行时间和系统资源。</font></font></li>
+</ul>
+<div align="center" dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="/ICT-BDA/EasyML/blob/master/img/job_reuse_submit.png"><img src="/ICT-BDA/EasyML/raw/master/img/job_reuse_submit.png" width="90%  alt=" style="max-width: 100%;"></a>
 </div>
-
-* The users can upload their own algorithm packages and data sets for creating their own tasks or shared with other users. By clicking the **`upload program`** button, the popup window allows the users to specify the necessary information of the algorithm package, including the name, the category, the description, and the command line pattern string etc, as shown in the following figure. The most important thing is to write the command line pattern string with the predefined format. It defined the input ports, output ports, and parameter settings of a node. We developed a tool in the panel for helping users to write the command line string patterns. By clicking the **`upload data`** button, users can upload a data set in the similar way as that of uploading a algorithms package.
-<div align=center>
-<img src="./img/Upload_Program.png" width="90%  alt="job_stdout"/>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户可以上传自己的算法包和数据集来创建自己的任务或与其他用户共享。</font><font style="vertical-align: inherit;">单击该</font></font><strong><code>upload program</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">按钮，弹出的窗口允许用户指定算法包的必要信息，包括名称、类别、描述、命令行模式字符串等，如下图所示。</font><font style="vertical-align: inherit;">最重要的是用预定义的格式编写命令行模式字符串。</font><font style="vertical-align: inherit;">它定义了节点的输入端口、输出端口和参数设置。</font><font style="vertical-align: inherit;">我们在面板中开发了一个工具来帮助用户编写命令行字符串模式。</font><font style="vertical-align: inherit;">通过点击该</font></font><strong><code>upload data</code></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">按钮，用户可以像上传算法包一样上传数据集。</font></font></li>
+</ul>
+<div align="center" dir="auto">
+<a target="_blank" rel="noopener noreferrer" href="/ICT-BDA/EasyML/blob/master/img/Upload_Program.png"><img src="/ICT-BDA/EasyML/raw/master/img/Upload_Program.png" width="90%  alt=" style="max-width: 100%;"></a>
 </div>
-
-## How to experience our system
-We apply an online service for you to experience our system. You can register your own account or use our official account to login the system. The website of the system is as belows:
-
-* Outside ICT, you can visit: [http://159.226.40.104:18080/dev/](http://159.226.40.104:18080/dev/ "http://159.226.40.104:18080/dev/")
-* Inside ICT, you can visit: [http://10.60.0.50:18080/dev/](http://10.60.0.50:18080/dev/ "http://10.60.0.50:18080/dev/")
-
-If you have any advice or problems when you expericen our system, welcome to contact us! You can leave us a message or give a email to `bdaict@hotmail.com`, thank you for your advice!
-
-## Papers and Presentations 
-1. [EasyML: Ease the Process of Machine Learning with Data Flow.](http://www.bigdatalab.ac.cn/~junxu/publications/SOSP2017-AISys-EasyML.pdf) SOSP AI System Workshop Shanghai Oct. 28, 2017 
-2. Tianyou Guo, Jun Xu, Xiaohui Yan, Jianpeng Hou, Ping Li, Zhaohui Li, Jiafeng Guo, and Xueqi Cheng. [Ease the Process of Machine Learning with Dataflow.](http://www.bigdatalab.ac.cn/~junxu/publications/CIKM2016_BDADemo.pdf) Proceedings of the 25th ACM International Conference on Information and Knowledge Management (CIKM '16), Indianapolis, USA, pp. 2437-2440, 2016.
-
-## Acknowledgements
-The following people contributed to the development of the EasyML project：
-
-* **Jun Xu**, School of Information, Renmin University of China. Homepage: [http://info.ruc.edu.cn/academic_professor.php?teacher_id=169](http://info.ruc.edu.cn/academic_professor.php?teacher_id=169)
-* **Xiaohui Yan**, Homepage: [http://xiaohuiyan.github.io/](http://xiaohuiyan.github.io/) 
-* **Xinjie Chen**,  Institute of Computing Technolgy, Chinese Academy of Sciences
-* **Zhaohui Li**,  Institute of Computing Technolgy, Chinese Academy of Sciences
-* **Tianyou Guo**,  Sougou Inc
-* **Jianpeng Hou**,  Google China
-* **Ping Li**,  Tencent Wechat
-* **Jiashuo Cao**, Chengdu University of Information Technology
-* **Dong Huang**, University of Chinese Academy of Sciences
-* **Xueqi Cheng**, Institute of Computing Technolgy, Chinese Academy of Sciences. Homepage: [http://www.bigdatalab.ac.cn/~cxq/](http://www.bigdatalab.ac.cn/~cxq/)
-
-
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如何体验我们的系统</font></font></h2><a id="user-content-how-to-experience-our-system" class="anchor" aria-label="永久链接：如何体验我们的系统" href="#how-to-experience-our-system"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们为您提供在线服务来体验我们的系统。</font><font style="vertical-align: inherit;">您可以注册自己的账户或使用我们的公众号登录系统。</font><font style="vertical-align: inherit;">系统网址如下：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ICT之外，您可以访问：</font></font><a href="http://159.226.40.104:18080/dev/" title="http://159.226.40.104:18080/dev/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://159.226.40.104:18080/dev/</font></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在ICT内部，您可以访问：</font></font><a href="http://10.60.0.50:18080/dev/" title="http://10.60.0.50:18080/dev/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://10.60.0.50:18080/dev/</font></font></a></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您在体验我们的系统时有任何建议或问题，欢迎联系我们！</font><font style="vertical-align: inherit;">您可以给我们留言或发邮件至</font></font><code>bdaict@hotmail.com</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，谢谢您的建议！</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">论文和演示文稿</font></font></h2><a id="user-content-papers-and-presentations" class="anchor" aria-label="永久链接：论文和演示文稿" href="#papers-and-presentations"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ol dir="auto">
+<li><a href="http://www.bigdatalab.ac.cn/~junxu/publications/SOSP2017-AISys-EasyML.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">EasyML：通过数据流简化机器学习过程。</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SOSP人工智能系统研讨会 上海 2017年10月28日</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">郭天佑、徐军、严晓辉、侯建鹏、李平、李朝晖、郭嘉峰和程学奇。</font></font><a href="http://www.bigdatalab.ac.cn/~junxu/publications/CIKM2016_BDADemo.pdf" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用数据流简化机器学习过程。</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">第 25 届 ACM 国际信息和知识管理会议 (CIKM '16) 会议记录，美国印第安纳波利斯，第 2437-2440 页，2016 年。</font></font></li>
+</ol>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">致谢</font></font></h2><a id="user-content-acknowledgements" class="anchor" aria-label="永久链接：致谢" href="#acknowledgements"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以下人员对 EasyML 项目的开发做出了贡献：</font></font></p>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">徐军</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，中国人民大学信息学院。</font><font style="vertical-align: inherit;">主页：</font></font><a href="http://info.ruc.edu.cn/academic_professor.php?teacher_id=169" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http ://info.ruc.edu.cn/academic_professor.php?teacher_id=169</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">严晓辉</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，主页：</font></font><a href="http://xiaohuiyan.github.io/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://xiaohuiyan.github.io/</font></font></a></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">陈新杰</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，中国科学院计算技术研究所</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">李朝晖</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，中国科学院计算技术研究所</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">郭天佑</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">,搜狗公司</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">侯建鹏</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，谷歌中国</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">李平</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，腾讯微信</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">曹嘉硕</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，成都信息工程大学</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">黄东</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，中国科学院大学</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">程学奇</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，中国科学院计算技术研究所。</font><font style="vertical-align: inherit;">主页： http: </font></font><a href="http://www.bigdatalab.ac.cn/~cxq/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">//www.bigdatalab.ac.cn/~cxq/</font></font></a></li>
+</ul>
+</article></div>
