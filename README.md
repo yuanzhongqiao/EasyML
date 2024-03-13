@@ -19,7 +19,7 @@
 <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基于 GUI 的机器学习工作室系统，使用户能够以拖放方式创建、配置、提交、监控和共享他们的机器学习过程。</font><font style="vertical-align: inherit;">机器学习库中的所有算法都可以在工作室系统中访问和配置。</font><font style="vertical-align: inherit;">它们是构建机器学习任务的关键构建块。</font></font></li>
 </ul>
 <div align="center" dir="auto">
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/ICT-BDA/EasyML/blob/master/img/LR_DAG.png"><img src="/ICT-BDA/EasyML/raw/master/img/LR_DAG.png" width="400" height="300" alt="数据流 DAG 示例" style="max-width: 100%;"></a>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/ICT-BDA/EasyML/blob/master/img/LR_DAG.png"><img src="https://github.com/ICT-BDA/EasyML/raw/master/img/LR_DAG.png" width="400" height="300" alt="数据流 DAG 示例" style="max-width: 100%;"></a>
 </div>
 <ul dir="auto">
 <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用于执行任务的云服务。</font><font style="vertical-align: inherit;">我们基于Hadoop和Spark开源大数据平台构建服务。</font><font style="vertical-align: inherit;">为了搭建一个平台，我们在</font></font><em><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Docker</font></font></strong></em><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">上组织了一个服务器集群。</font><font style="vertical-align: inherit;">从 GUI 接收到任务 DAG 后，每个节点将自动安排在其所有依赖数据源准备就绪时运行。</font><font style="vertical-align: inherit;">根据其实现，该算法对应于将计划在 Linux、Spark 或 Map-Reduce 上运行的节点。</font></font></li>
